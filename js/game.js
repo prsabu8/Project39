@@ -1,6 +1,6 @@
 class Game{
     constructor(){
-        //this.visibility = 225;
+
     }
     getState() {
         var gameStateRef = database.ref('gameState');
@@ -64,7 +64,10 @@ class Game{
                          
                      }
                     
-                     
+                         textSize(25);
+                         fill("white");
+                         text("Player 1 :" +allPlayers.player1.score,50,50);
+                        text("Player 2 :" + allPlayers.player2.score, 50, 100);
                  
                  }
                 
@@ -101,14 +104,15 @@ class Game{
                  }
                  
                   if (player.index !== null) {
-                     //fill code here, to destroy the objects.
-                    if(player.isTouching(fruitGroup)) {
-                     fruitGroup.remove();
-                    }
-                        
-                        /*push();
-                        this.visibility = this.visibility -5;
-                        pop();*/
+                      for (var i = 0; i < fruitGroup.length; i++) {
+                          if (fruitGroup.get(i).isTouching(players)) {
+                              fruitGroup.get(i).destroy();
+                              player.score =player.score+1;
+                              player.update();
+                              
+                          }
+                          
+                      }
                   }
                 
 
